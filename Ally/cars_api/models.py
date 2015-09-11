@@ -1,7 +1,7 @@
 from django.contrib.gis.db import models
 
 # The car model. Every row represents a car using its position
-class cars(models.Model):
+class car(models.Model):
     # overriding default manager with GeoManager
     objects = models.GeoManager()
 
