@@ -24,10 +24,9 @@ class Command(BaseCommand):
             lat = entry["latitude"]
             lng = entry["longitude"]
             desc = entry["description"]
-     
-            point = 'POINT(' + str(lng) + " " + str(lat) + ')' # just hack-ish
-     
-            obj = car(desc=desc, lnglat=GEOSGeometry(point)) # create car obj
+
+            pnt = GEOSGeometry('POINT(%s %s)' %(lng, lat))
+            obj = car(desc=desc, lnglat=pnt) # create car obj
             obj.save() # save to car table
 
     def handle(self, *args, **options):
