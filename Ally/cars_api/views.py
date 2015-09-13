@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from cars_api.models import car
 from django.contrib.gis.geos import GEOSGeometry
+import time
 
 
 def tenNearestCars(request, location=None):
@@ -34,12 +35,17 @@ def tenNearestCars(request, location=None):
 
         data = { "cars": [] }
 
-        for obj in car.objects.raw(query2):
+        start = time.clock()
+        cars = car.objects.raw(query2)
+        end = time.clock()
+
+        for obj in cars:
             data["cars"].append(
                     {
                         "description": obj.desc,
                         "longitute": obj.lnglat.x,
                         "latitude": obj.lnglat.y
                     })
+            data["elapsed time"] = end - start
 
         return JsonResponse(data)
