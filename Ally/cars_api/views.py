@@ -28,7 +28,7 @@ def tenNearestCars(request, location=None):
                 ST_Distance(cars.lnglat, ST_PointFromText('POINT(%s %s)', 4326))
             ASC LIMIT 10""" %(lng, lat)
 
-        # another query that uses Rtree indexing
+        # approach that uses Rtree indexing
         query2 = """
             SELECT
                 *
@@ -49,7 +49,7 @@ def tenNearestCars(request, location=None):
             data["cars"].append(
                     {
                         "description": obj.desc,
-                        "longitute": obj.lnglat.x,
+                        "longitude": obj.lnglat.x,
                         "latitude": obj.lnglat.y
                     })
             data["elapsed time"] = end - start
