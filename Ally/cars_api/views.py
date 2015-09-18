@@ -37,7 +37,7 @@ def tenNearestCars(request, location=None):
             ORDER BY
                 cars.lnglat <->
                 'SRID=4326;POINT(%s %s)'::geometry
-            DESC LIMIT 10""" %(lng, lat)
+            ASC LIMIT 10""" %(lng, lat)
 
         data = { "cars": [] }
 
