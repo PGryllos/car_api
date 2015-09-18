@@ -22,4 +22,8 @@ After everything is set you can use `python manage.py migrate` to build the mode
 
 You can run the Django development server with `python manage.py runserver`. 
 
-At this point if you sent a get request in the form GET/cars?location=51.5444204,-0.22707 you will a get test response that projects the same coordinates.
+Functionality
+---
+
+With the server running you can enter 127.0.0.1:8000 and use the UI to input a location's longitude and latitude and request the closest cars. The server will responde with the 10 closest. Or you can Just sent a GET request
+with the form `/cars?location=lng,lat` and the server will responde with a json object contain a list of the ten closest.
