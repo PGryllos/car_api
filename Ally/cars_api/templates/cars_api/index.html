@@ -95,6 +95,7 @@ $(document).ready(function(){
             url:'/cars',
             data: {"location" : location},
             success: function (data) {
+                $("#table td").remove();
                 for (var i = 0; i < data.cars.length; i++) {
                     tr = $('<tr/>');
                     tr.append("<td>" + data.cars[i].description + "</td>");
