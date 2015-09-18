@@ -52,6 +52,6 @@ def tenNearestCars(request, location=None):
                         "longitude": obj.lnglat.x,
                         "latitude": obj.lnglat.y
                     })
-            data["elapsed time"] = end - start
+            data["elapsed"] = end - start
 
         return JsonResponse(data)

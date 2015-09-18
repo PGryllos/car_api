@@ -39,7 +39,7 @@
         </div>
         <!-- GEt form -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <form class="form-inline" action="/cars" method="GET">
 
                     <div class="form-group">
@@ -73,6 +73,10 @@
                     </thead>
                 </table>
             </div>
+            <p></p>
+            <div class="col-md-4">
+                <p id="elapsed" class="text-muted"></p>
+            </div>
         </div>
     </div>
 
@@ -103,6 +107,7 @@ $(document).ready(function(){
                     tr.append("<td>" + data.cars[i].latitude + "</td>");
                     $('#table').append(tr);
                 }
+                $('#elapsed').html("Elasped Time: "+data.elapsed+" sec");
             }
         });
     });
