@@ -2,9 +2,15 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from cars_api.models import car
 from django.contrib.gis.geos import GEOSGeometry
+from django.shortcuts import render
+
 import time
 
+# home view
+def interface(request):
+    return render(request, 'cars_api/index.html')
 
+# api view
 def tenNearestCars(request, location=None):
     if request.method == "POST":
         pass

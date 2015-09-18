@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+
+<title>Find cars around you</title>
+
+<!-- Bootstrap core CSS -->
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Jquery included first  -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <!-- Header -->
+
+            <div class="col-md-6">
+                <div class="page-header">
+                    <h2>Find Cars
+                        <p><small>the best place to look for cars available in your area</small></p>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <!-- GEt form -->
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-inline" action="/cars" method="GET">
+
+                    <div class="form-group">
+                        <input type="text" name="lng" class="form-control" id="lng" placeholder="Longitute">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="lat" class="form-control" id="lat" placeholder="Latitude">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary">
+                            Search
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p></p>
+                <table id="table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th data-field="description">Description</th>
+                            <th data-field="longitute">Longitude</th>
+                            <th data-field="latitude">Latitude</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p class="text-muted credit">
+            &copy; Gryllos Prokopis 2015. No rights reserved.
+            </p>
+        </div>
+    </div>
+
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        var location = lng.value+","+lat.value;
+        var tr;
+        $.ajax({
+            type:'GET',
+            cache:false,
+            url:'/cars',
+            data: {"location" : location},
+            success: function (data) {
+                for (var i = 0; i < data.cars.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + data.cars[i].description + "</td>");
+                    tr.append("<td>" + data.cars[i].longitude + "</td>");
+                    tr.append("<td>" + data.cars[i].latitude + "</td>");
+                    $('#table').append(tr);
+                }
+            }
+        });
+    });
+});
+</script>
+<!-- Bootstrap core JavaScript
+        ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+</body>
+</html>
