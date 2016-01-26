@@ -41,3 +41,5 @@ This endpoint should fetch the 10 closest cars from the database and return them
 - Use this repository to build your solution.
 - The solution should perform well regardless of the number of records
 - Don't forget the instructions for testing and running the code.
+
+__for instruction on how to run the api see [here](https://github.com/PGryllos/car_api/tree/master/Ally)__
